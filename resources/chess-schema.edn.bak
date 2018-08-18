@@ -1,4 +1,12 @@
 {:objects
+
+ {:Player 
+  {:description "A ChessPlayer"
+    :fields 
+    {:id {:type (non-null ID)}
+      :name {:type String}
+      :rating {:type Int}}}}
+
  {:BoardGame
   {:description "A physical or virtual board game."
    :fields
@@ -13,13 +21,7 @@
     :max_players {:type Int
                   :description "The maximum number of players the game supports."}
     :play_time {:type Int
-                :description "Play time, in minutes, for a typical game."}}}
-  :Player 
-  {:description "A ChessPlayer"
-    :fields 
-    {:id {:type ID}
-     :name {:type String}
-     :rating {:type Int}}}}
+                :description "Play time, in minutes, for a typical game."}}}}
 
 :queries
 {:game_by_id
@@ -27,10 +29,11 @@
   :description "Access a BoardGame by its unique id, if it exists."
   :args
   {:id {:type ID}}
-  :resolve :query/game-by-id}
-:player_by_name
+  :resolve :query/game-by-id}}
+{:player_by_name
   {:type :Player
   :description "A ChessPlayer's info by unique id"
   :args
   {:name {:type String}}
-  :resolve :query/player-by-name}}}
+  :resolve :query/player-by-name}}
+}

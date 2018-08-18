@@ -6,12 +6,18 @@
     [com.walmartlabs.lacinia.pedestal :refer [service-map]]
     [com.walmartlabs.lacinia.util :as util]
     [com.walmartlabs.lacinia.schema :as schema]
-    [io.pedestal.http :as http]))
+    [io.pedestal.http :as http]
+    [chessapi.core :as core]))
 
 (defn resolver-map
   []
   {:query/game-by-id (fn [context args value]
-                       nil)})
+                       nil)
+   :query/player-by-name (fn [context args value] 
+    {:name (get (core/get-player-data (get args :name)) :username )})})     
+    
+(println(core/get-player-data "erik"))
+                       
 
 (defn load-schema
   []
