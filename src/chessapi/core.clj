@@ -13,4 +13,17 @@
    [username] 
    (parse-string (get (client/get (str "https://api.chess.com/pub/player/" username)) :body) true))
 
-  
+(defn gpd 
+  [username]
+(let [name (str "https://api.chess.com/pub/player/" username)]
+  (-> name
+    (client/get)
+    (get :body)
+    (parse-string true))))
+
+(defn get-player-id 
+  [player] 
+    (-> player
+    (get-player-data)
+    (get :player_id)))
+
