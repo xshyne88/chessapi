@@ -14,11 +14,16 @@
   {:query/game-by-id (fn [context args value]
                        nil)
    :query/player-by-name (fn [context args value] 
-    {:name (get (core/get-player-data (get args :name)) :username )})})     
-    
-(println(core/get-player-data "erik"))
-                       
+    (let 
+      [username (get args :name)
+      body (core/get-player-data username)
+      player-name (get body :name)
+      id (get body :player_id)]
+      {:name player-name :id id }))})
 
+
+    ; :query/player-by-name (fn [context args value] 
+    ; {:name (get (core/get-player-data (get args :name)) :username )})})     
 (defn load-schema
   []
   (-> (io/resource "chess-schema.edn")
