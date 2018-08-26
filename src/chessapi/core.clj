@@ -14,7 +14,7 @@
    (parse-string (get (client/get (str "https://api.chess.com/pub/player/" username)) :body) true))
 
 (defn gpd 
-  [username]
+  [username] 
 (let [name (str "https://api.chess.com/pub/player/" username)]
   (-> name
     (client/get)
@@ -26,4 +26,33 @@
     (-> player
     (get-player-data)
     (get :player_id)))
+
+(defn get-player-country
+  [player]
+    (-> player
+    (get-player-data)
+    (get :country)))
+
+(defn get-player-location 
+  [player]
+    (-> player 
+    (get-player-data)
+    (get :location)))
+
+
+(defn get-player-followers 
+  [player]
+    (-> player 
+    (get-player-data)
+    (get :followers)))
+
+(defn player-is-online? 
+  [player]
+  (let [url (str "https://api.chess.com/pub/player/" player "/is-online")]
+    (-> url 
+        (client/get)
+        (get :body)
+        (parse-string true)
+        (get :online))))
+
 
