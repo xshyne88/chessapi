@@ -19,7 +19,8 @@
     :fields 
     {:id {:type ID}
      :name {:type String}
-     :rating {:type Int}}}}
+     :rating {:type Int}
+     :online {:type Boolean}}}}
 
 :queries
 {:game_by_id
@@ -30,7 +31,7 @@
   :resolve :query/game-by-id}
 :player_by_name
   {:type :Player
-  :description "A ChessPlayer's info by unique id"
+  :description "A ChessPlayer's info by unique name"
   :args
   {:name {:type String}}
   :resolve :query/player-by-name}}}
