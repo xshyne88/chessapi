@@ -18,8 +18,9 @@
       [username (get args :name)
       body (core/get-player-data username)
       player-name (get body :name)
-      id (get body :player_id)]
-      {:name player-name :id id }))})
+      id (get body :player_id)
+      online (core/player-is-online? username)]
+      {:name player-name :id id :online online }))})
 
 
     ; :query/player-by-name (fn [context args value] 
